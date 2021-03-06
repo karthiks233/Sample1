@@ -1,5 +1,5 @@
 
-from flask import Flask
+from flask import Flask, render_template,request
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
@@ -7,10 +7,18 @@ from flask import Flask
 app = Flask(__name__)
 
 
+@app.route('/sum4',methods=['POST'])
+def a():
+    n1=request.form['num1']
+    n2=request.form['num2']
+    r= n1*n2
+    return r
+
+
 @app.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello Karthik!'
+@app.route('/entry')
+def page():
+    return render_template('entry.html',title='Are you ready to multiply')
 
 
 if __name__ == '__main__':
