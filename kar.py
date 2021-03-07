@@ -11,7 +11,7 @@ app = Flask(__name__)
 def a():
     n1=request.form['num1']
     n2=request.form['num2']
-    r= n1*n2
+    r= str(n1*n2)
     return r
 
 
