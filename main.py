@@ -39,5 +39,7 @@ def json_example():
            The boolean value is: {}'''.format(language, framework, python_version, example, boolean_test)
 
 if __name__ == '__main__':
-    # run app in debug mode on port 5000
-    app.run(debug=True, port=5000)
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    app.run(host='127.0.0.0', port=8080, debug=True)
