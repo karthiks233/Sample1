@@ -1,30 +1,43 @@
-from flask import Flask, render_template,request
+from flask import Flask,request
 
-
-# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
-# called `app` in `main.py`.
 app = Flask(__name__)
+# GET requests will be blocked
+# GET requests will be blocked
+@app.route('/json-example', methods=['POST'])
+def json_example():
+    request_data = request.get_json()
 
+    language = None
+    framework = None
+    python_version = None
+    example = None
+    boolean_test = None
 
-@app.route('/sum4',methods=['POST'])
-def a():
-    n1=request.form['num1']
-    n2=request.form['num2']
-    x=float(n1)
-    y=float(n2)
-    r=x*y
-    r=str(r)
-    return r
+    if request_data:
+        if 'language' in request_data:
+            language = request_data['language']
 
+        if 'framework' in request_data:
+            framework = request_data['framework']
 
-@app.route('/')
-@app.route('/entry')
-def page():
-    return render_template('entry.html',title='Are you ready to multiply')
+        if 'version_info' in request_data:
+            if 'python' in request_data['version_info']:
+                python_version = request_data['version_info']['python']
 
+        if 'examples' in request_data:
+            if (type(request_data['examples']) == list) and (len(request_data['examples']) > 0):
+                example = request_data['examples'][0]
+
+        if 'boolean_test' in request_data:
+            boolean_test = request_data['boolean_test']
+
+    return '''
+           The language value is: {}
+           The framework value is: {}
+           The Python version is: {}
+           The item at index 0 in the example list is: {}
+           The boolean value is: {}'''.format(language, framework, python_version, example, boolean_test)
 
 if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app. This
-    # can be configured by adding an `entrypoint` to app.yaml.
-    app.run(host='127.0.0.0', port=8080, debug=True)
+    # run app in debug mode on port 5000
+    app.run(debug=True, port=5000)
