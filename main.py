@@ -3,6 +3,11 @@ from flask import Flask,request
 app = Flask(__name__)
 # GET requests will be blocked
 # GET requests will be blocked
+@app.route('/')
+def hello():
+    return 'Hello There'
+
+
 @app.route('/json-example', methods=['POST'])
 def json_example():
     request_data = request.get_json()
