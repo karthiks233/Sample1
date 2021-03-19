@@ -1,2 +1,2 @@
 runtime: python39
-service : input_json_data
+service : input-json-data
