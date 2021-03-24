@@ -10,8 +10,8 @@ def hello():
 
 
 @app.route('/json-example', methods=['POST'])
-def json_example(request):
-    request_data = request.json
+def json_example():
+    request_data = request.get_json()
 
     language = None
     framework = None
