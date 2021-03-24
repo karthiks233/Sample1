@@ -46,10 +46,16 @@ def json_example(request):
 #       'success': 'some var', 
 #       'payload': 'some var',
 #     } 
-    try:
-        return jsonify(request_data)
-    except:
-        return 'hi gais'
+#     try:
+#         return jsonify(request_data)
+#     except:
+#         return 'hi gais'
+     return '''
+           The language value is: {}
+           The framework value is: {}
+           The Python version is: {}
+           The item at index 0 in the example list is: {}
+           The boolean value is: {}'''.format(language, framework, python_version, example, boolean_test)
 
 
 if __name__ == '__main__':
