@@ -13,42 +13,44 @@ def hello():
 def json_example(request):
     request_data = request.json
 
-    language = None
-    framework = None
-    python_version = None
-    example = None
-    boolean_test = None
+#     language = None
+#     framework = None
+#     python_version = None
+#     example = None
+#     boolean_test = None
 
-    if request_data:
-        if 'language' in request_data:
-            language = request_data['language']
+#     if request_data:
+#         if 'language' in request_data:
+#             language = request_data['language']
 
-        if 'framework' in request_data:
-            framework = request_data['framework']
+#         if 'framework' in request_data:
+#             framework = request_data['framework']
 
-        if 'version_info' in request_data:
-            if 'python' in request_data['version_info']:
-                python_version = request_data['version_info']['python']
+#         if 'version_info' in request_data:
+#             if 'python' in request_data['version_info']:
+#                 python_version = request_data['version_info']['python']
 
-        if 'examples' in request_data:
-            if (type(request_data['examples']) == list) and (len(request_data['examples']) > 0):
-                example = request_data['examples'][0]
+#         if 'examples' in request_data:
+#             if (type(request_data['examples']) == list) and (len(request_data['examples']) > 0):
+#                 example = request_data['examples'][0]
 
-        if 'boolean_test' in request_data:
-            boolean_test = request_data['boolean_test']
+#         if 'boolean_test' in request_data:
+#             boolean_test = request_data['boolean_test']
             
 #     data={"message":"hello_world"}
     
-    
 
-    self.response.headers['Content-Type'] = 'application/json'   
-    obj = {
-      'success': 'some var', 
-      'payload': 'some var',
-    } 
-    return self.response.out.write(json.dumps(obj))
 
-#     return jsonify(data)
+#     self.response.headers['Content-Type'] = 'application/json'   
+#     obj = {
+#       'success': 'some var', 
+#       'payload': 'some var',
+#     } 
+    try:
+        return jsonify(request_data)
+    except:
+        return 'hi gais'
+
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
