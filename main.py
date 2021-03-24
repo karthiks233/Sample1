@@ -1,4 +1,5 @@
 from flask import Flask,request
+import json
 
 app = Flask(__name__)
 # GET requests will be blocked
@@ -36,9 +37,18 @@ def json_example():
         if 'boolean_test' in request_data:
             boolean_test = request_data['boolean_test']
             
-    data={"message":"hello_world"}
+#     data={"message":"hello_world"}
+    
+    
 
-    return jsonify(data)
+    self.response.headers['Content-Type'] = 'application/json'   
+    obj = {
+      'success': 'some var', 
+      'payload': 'some var',
+    } 
+    self.response.out.write(json.dumps(obj))
+
+#     return jsonify(data)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
