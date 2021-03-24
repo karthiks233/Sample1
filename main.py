@@ -46,7 +46,7 @@ def json_example():
       'success': 'some var', 
       'payload': 'some var',
     } 
-    self.response.out.write(json.dumps(obj))
+    return self.response.out.write(json.dumps(obj))
 
 #     return jsonify(data)
 
