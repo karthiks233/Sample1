@@ -35,13 +35,10 @@ def json_example():
 
         if 'boolean_test' in request_data:
             boolean_test = request_data['boolean_test']
+            
+    data={'language':language,'framework':framework}
 
-    return '''
-           The language value is: {}
-           The framework value is: {}
-           The Python version is: {}
-           The item at index 0 in the example list is: {}
-           The boolean value is: {}'''.format(language, framework, python_version, example, boolean_test)
+    return jsonify(data)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
