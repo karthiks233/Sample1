@@ -36,7 +36,7 @@ def json_example():
         if 'boolean_test' in request_data:
             boolean_test = request_data['boolean_test']
             
-    data={'language':language,'framework':framework}
+    data={"message":"hello_world"}
 
     return jsonify(data)
 
